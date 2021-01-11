@@ -1,0 +1,19 @@
+#Using recursion
+#runtime of 152ms, memory usage of 14.1mb
+
+
+class Solution:
+    def countArrangement(self, n: int) -> int:
+        count = 0
+        def b(i,l):
+            nonlocal count
+            if i == 1:
+                count += 1
+                return count
+            else:
+                for j in range(0,len(l)):
+                    if i%l[j] == 0 or l[j]%i == 0:
+                        b(i-1, l[:j] + l[j+1:])
+                return count
+        return b(n, list(range(1, n+1)))
+            
