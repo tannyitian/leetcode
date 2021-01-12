@@ -1,0 +1,37 @@
+#import collections
+class Solution:
+    def numSplits(self, s: str) -> int:
+#         left = collections.Counter()
+#         right= collections.Counter(s)
+#         count = 0
+#         for item in s:
+#             left.update({item:1})
+#             right.update({item:-1})
+#             if right[item] == 0:
+#                 del right[item]
+            
+#             if len(left) == len(right):
+#                 count += 1
+#         return count
+    
+        N = len(s)
+        left = {}
+        right = {}
+        count = 0
+        for i in range(N):
+            right[s[i]] = right.get(s[i], 0) + 1
+        
+        for item in s:
+            if item not in left:
+                left[item] = 1
+            else:
+                left[item] += 1
+         
+            right[item] -=1
+            if right[item] == 0:
+                del right[item]
+            
+            if len(left) == len(right):
+                count += 1
+        return count
+        
